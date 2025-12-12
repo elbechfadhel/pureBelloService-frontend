@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+    color-scheme: light;
+}
+
+/* Prevent iOS/Android dark-mode auto-theming on inputs */
+input,
+textarea,
+select {
+    background-color: #ffffff !important;
+    color: #111827 !important;     /* Tailwind gray-900 */
+    -webkit-text-fill-color: #111827 !important; /* Safari fix */
+}
+.kiosk-background {
+    position: relative;
+    overflow: hidden;
+}
+
+.kiosk-background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/logo-xxx.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;   /* 👈 places logo fully below header */
+    background-size: contain;             /* 👈 always show full circle */
+    opacity: 0.10;                        /* adjust if needed */
+    pointer-events: none;
+    z-index: 0;
+}
