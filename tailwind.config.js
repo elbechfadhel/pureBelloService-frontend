@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        logo: ["Allura", "cursive"],
+      },
       keyframes: {
         slideIn: {
           "0%": { opacity: 0, transform: "translateX(100%)" },

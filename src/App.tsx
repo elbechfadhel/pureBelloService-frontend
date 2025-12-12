@@ -12,7 +12,9 @@ const App: React.FC = () => {
             {/* Navigation */}
             <header className="pbs-header">
                 <div className="pbs-logo">
-                    <div className="pbs-logo-title">Pico-Bello Service</div>
+                    <div className="pbs-logo-title font-logo">
+                        Pico-Bello Service
+                    </div>
                     <div className="pbs-logo-sub">Glas- und Gebäudereinigung</div>
                 </div>
 
