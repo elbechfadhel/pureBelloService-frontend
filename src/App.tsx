@@ -1,82 +1,177 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import BookingPage from './pages/BookingPage';
-import ServicesPage from './pages/ServicesPage';
-import AdminBookings from './admin/AdminBookings';
-import Layout from './components/Layout';
-import { Toaster } from 'react-hot-toast';
-import AdminLogin from "@/admin/AdminLogin.tsx";
-import ProtectedRoute from './pages/ProtectedRoute';
-import AdminEmployees from "@/admin/AdminEmployees.tsx";
-import AdminFeedbacks from "@/admin/AdminFeedbacks.tsx";
-import PrivacyPolicy from "@/components/PrivacyPolicy.tsx";
-import FeedbackPage from "./pages/FeedbackPage.tsx";
-import KioskTodayBoard from "@/admin/KioskTodayBoard.tsx";
-import AdminBlockSlots from "@/admin/AdminBlockSlots.tsx";
-import AdminSmsLogs from "@/admin/AdminSmsLogs.tsx";
-
-import WidgetsPage from './pages/WidgetsPage.tsx';
-
+import React from "react";
+import "./App.css";
 
 const App: React.FC = () => {
+    const scrollTo = (id: string) => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+    };
+
     return (
-        <Router>
-            <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
+        <div className="pbs-page">
+            {/* Navigation */}
+            <header className="pbs-header">
+                <div className="pbs-logo">
+                    <div className="pbs-logo-title">Pico-Bello Service</div>
+                    <div className="pbs-logo-sub">Glas- und Gebäudereinigung</div>
+                </div>
 
-            <Routes>
-                <Route
-                    path="/admin/kioskTodayBoard"
-                    element={<ProtectedRoute><KioskTodayBoard /></ProtectedRoute>}
-                />
-            </Routes>
+                <nav className="pbs-nav">
+                    <button onClick={() => scrollTo("services")}>Leistungen</button>
+                    <button onClick={() => scrollTo("about")}>Über uns</button>
+                    <button onClick={() => scrollTo("contact")}>Kontakt</button>
+                </nav>
+            </header>
 
-            <Layout>
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/services" element={<ServicesPage />} />
-                    <Route path="/booking" element={<BookingPage />} />
-                    <Route path="/feedback" element={<FeedbackPage />} />
-                    <Route path="/admin/login" element={<AdminLogin />} />
-
-
-                    <Route
-                        path="/admin/bookings"
-                        element={<ProtectedRoute><AdminBookings /></ProtectedRoute>}
+            {/* Hero section */}
+            <section className="pbs-hero">
+                <div className="pbs-hero-image">
+                    <img
+                        src="/images/hero-window.jpg"
+                        alt="Professioneller Fensterreiniger bei der Arbeit"
                     />
-                    <Route
-                        path="/admin/employees"
-                        element={<ProtectedRoute><AdminEmployees /></ProtectedRoute>}
-                    />
+                </div>
+                <div className="pbs-hero-content">
+                    <p className="pbs-hero-overline">
+                        Glas- und Gebäudereinigung in Braunschweig
+                    </p>
+                    <h1>
+                        Zuverlässige Glas- und Gebäudereinigung
+                        <br />
+                        in Braunschweig &amp; Umgebung
+                    </h1>
+                    <p className="pbs-hero-text">
+                        Streifenfreie Fenster, gepflegte Treppenhäuser und saubere
+                        Objekte&nbsp;– Pico-Bello Service bietet gründliche, flexible
+                        Reinigung für Firmen und Privathaushalte.
+                    </p>
+                    <button
+                        className="pbs-hero-cta"
+                        onClick={() => scrollTo("contact")}
+                    >
+                        Kostenloses Angebot anfordern
+                    </button>
+                </div>
+            </section>
 
-                    <Route
-                        path="/admin/blocks"
-                        element={<ProtectedRoute><AdminBlockSlots /></ProtectedRoute>}
-                    />
+            {/* Services */}
+            <section id="services" className="pbs-section pbs-services">
+                <h2>Unsere Leistungen</h2>
 
-                    <Route
-                        path="/admin/feedbacks"
-                        element={<ProtectedRoute><AdminFeedbacks /></ProtectedRoute>}
-                    />
-                    <Route
-                        path="/admin/sms-logs"
-                        element={<ProtectedRoute><AdminSmsLogs /></ProtectedRoute>}
-                    />
+                <div className="pbs-services-grid">
+                    <article className="pbs-service-card">
+                        <div className="pbs-service-image">
+                            <img
+                                src="/images/service-glas.jpg"
+                                alt="Glasreinigung – Fenster und Glasfassaden"
+                            />
+                        </div>
+                        <h3>Glasreinigung</h3>
+                        <p>
+                            Streifenfreie Reinigung von Fenstern, Schaufenstern und
+                            Glasfassaden – innen und außen.
+                        </p>
+                    </article>
 
-                    <Route
-                        path="/widget"
-                        element={<WidgetsPage />}
-                    />
+                    <article className="pbs-service-card">
+                        <div className="pbs-service-image">
+                            <img
+                                src="/images/service-gebaeude.jpeg"
+                                alt="Gebäudereinigung – Büro und Eingangsbereich"
+                            />
+                        </div>
+                        <h3>Gebäudereinigung</h3>
+                        <p>
+                            Gründliche Reinigung von Treppenhäusern, Büros, Eingangsbereichen
+                            und Allgemeinflächen.
+                        </p>
+                    </article>
 
+                    <article className="pbs-service-card">
+                        <div className="pbs-service-image">
+                            <img
+                                src="/images/service-grund.jpg"
+                                alt="Grundreinigung von Böden"
+                            />
+                        </div>
+                        <h3>Grundreinigung</h3>
+                        <p>
+                            Intensivreinigung von Böden und Oberflächen, z.&nbsp;B. nach
+                            Renovierungen oder Umzügen.
+                        </p>
+                    </article>
 
-                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                   {/* <Route
-                        path="/admin/services/*"
-                        element={<ProtectedRoute><AdminServices /></ProtectedRoute>}
-                    />*/}
-                </Routes>
-            </Layout>
-        </Router>
+                    <article className="pbs-service-card">
+                        <div className="pbs-service-image">
+                            <img
+                                src="/images/service-unterhalt.jpg"
+                                alt="Unterhaltsreinigung – regelmäßige Büroreinigung"
+                            />
+                        </div>
+                        <h3>Unterhaltsreinigung</h3>
+                        <p>
+                            Regelmäßige Reinigung von Büros, Praxen und Objekten nach
+                            individuellem Rhythmus.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            {/* About + Contact */}
+            <section className="pbs-section pbs-two-column" id="about">
+                <div className="pbs-about">
+                    <h2>Über Pico-Bello Service</h2>
+                    <p>
+                        Pico-Bello Service ist ein inhabergeführtes
+                        Reinigungsunternehmen mit persönlichem Kontakt und direkter
+                        Betreuung durch Amal Khalifa in Braunschweig.
+                    </p>
+                    <ul className="pbs-list">
+                        <li>✔ Faire, transparente Preise</li>
+                        <li>✔ Persönlicher Kontakt &amp; flexible Termine</li>
+                        <li>✔ Zuverlässige, gründliche Arbeitsweise</li>
+                    </ul>
+                </div>
+
+                <div className="pbs-contact" id="contact">
+                    <h2>Kontakt</h2>
+                    <p>Schreiben Sie uns für ein unverbindliches Angebot.</p>
+                    <form
+                        className="pbs-contact-form"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            alert("Formular-Demo – hier Backend / Email-Service anbinden.");
+                        }}
+                    >
+                        <label>
+                            Name
+                            <input type="text" name="name" required />
+                        </label>
+                        <label>
+                            E-Mail
+                            <input type="email" name="email" required />
+                        </label>
+                        <label>
+                            Telefonnummer
+                            <input type="tel" name="phone" />
+                        </label>
+                        <label>
+                            Nachricht
+                            <textarea name="message" rows={4} required />
+                        </label>
+                        <button type="submit" className="pbs-hero-cta">
+                            Nachricht senden
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            {/* Footer */}
+            <footer className="pbs-footer">
+                <span>Pico-Bello Service · Glas- und Gebäudereinigung</span>
+                <span>Amal Khalifa · Braunschweig</span>
+            </footer>
+        </div>
     );
 };
 
