@@ -51,7 +51,7 @@ body {
     font-family: "Allura", "Times New Roman", serif;
     font-size: 2.4rem;
     font-style: italic;
-    color: #162b3a;            /* bleu foncé élégant comme le reste */
+    color: var(--pbs-accent);          /* bleu foncé élégant comme le reste */
 }
 .pbs-logo-title-2 {
     font-family: "Dancing Script", cursive;
